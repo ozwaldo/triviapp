@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">triviapp</string>
+    <string name="verdadero_btn_text">Verdad</string>
+    <string name="falso_btn_text">Falso</string>
+    <string name="siguiente_text">Siguiente</string>
+
+
+
+    <string name="pregunta_text">México es un país del continente Americano.</string>
+</resources>
