@@ -6,5 +6,10 @@
 
 
 
-    <string name="pregunta_text">México es un país del continente Americano.</string>
+    <string name="pregunta_uno_text">México es un país del continente Americano.</string>
+    <string name="pregunta_dos_text">El ITSUR se encuentra en Moroleón.</string>
+    <string name="pregunta_tres_text">La independencia de México inicio en 1910.</string>
+    <string name="pregunta_cuatro_text">El año de fundación del ITSUR fue en 1997.</string>
+    <string name="pregunta_cinco_text">Un TextView nos sirve para que el usuario \n introduzca datos en una aplicación.</string>
+
 </resources>

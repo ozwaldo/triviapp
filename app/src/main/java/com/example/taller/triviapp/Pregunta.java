@@ -2,20 +2,22 @@ package com.example.taller.triviapp;
 
 public class Pregunta {
 
-    private int mRespId;
+    private int mPreguntaId;
     private boolean mRespuestaV;
 
-    public Pregunta(int RespId, boolean RespuestaV) {
-        this.mRespId = RespId;
+
+
+    public Pregunta(int PreguntaId, boolean RespuestaV) {
+        this.mPreguntaId = PreguntaId;
         this.mRespuestaV = RespuestaV;
     }
 
-    public int getRespId() {
-        return mRespId;
+    public int getPreguntaId() {
+        return mPreguntaId;
     }
 
-    public void setRespId(int RespId) {
-        this.mRespId = RespId;
+    public void setPreguntaId(int PreguntaId) {
+        this.mPreguntaId = PreguntaId;
     }
 
     public boolean isRespuestaV() {
