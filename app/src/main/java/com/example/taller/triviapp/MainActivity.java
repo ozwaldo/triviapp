@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPregunta_text_view = (TextView) findViewById(R.id.pregunta_tv);
 
-        int pregunta = mPreguntas[mIndiceActual].getRespId();
+        int pregunta = mPreguntas[mIndiceActual].getPreguntaId();
         
         mVerdaderoBoton = (Button) findViewById(R.id.verdadero_btn);
         mFalsoBoton = (Button) findViewById(R.id.falso_btn);
