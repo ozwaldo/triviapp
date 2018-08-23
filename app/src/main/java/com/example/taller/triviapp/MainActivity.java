@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         mPregunta_text_view = (TextView) findViewById(R.id.pregunta_tv);
 
-        int pregunta = mPreguntas[mIndiceActual].getPreguntaId();
-        
         mVerdaderoBoton = (Button) findViewById(R.id.verdadero_btn);
         mFalsoBoton = (Button) findViewById(R.id.falso_btn);
         mSiguienteBoton = (Button) findViewById(R.id.siguiente_btn);
@@ -42,20 +40,45 @@ public class MainActivity extends AppCompatActivity {
         mVerdaderoBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Verdadero", Toast.LENGTH_SHORT).show();
+                revisarRespuesta(true);
             }
         });
         mFalsoBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Falso", Toast.LENGTH_SHORT).show();
+                revisarRespuesta(false);
             }
         });
         mSiguienteBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Siguiente", Toast.LENGTH_SHORT).show();
+                mIndiceActual = (mIndiceActual + 1) % mPreguntas.length;
+                crearPregunta();
             }
         });
+
+        crearPregunta();
     }
+
+    private void revisarRespuesta(boolean respUsuario) {
+        boolean respTrue = mPreguntas[mIndiceActual].isRespuestaV();
+
+        String menPreguntaId = null;
+
+        if (respUsuario == respTrue) {
+            menPreguntaId = "Respuesta Correcta";
+        } else {
+            menPreguntaId = "Respuesta Incorrecta";
+        }
+
+        Toast.makeText(this, menPreguntaId, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void crearPregunta() {
+        int pregunta = mPreguntas[mIndiceActual].getPreguntaId();
+        mPregunta_text_view.setText(pregunta);
+    }
+
+
 }
