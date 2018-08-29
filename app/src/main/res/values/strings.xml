@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">triviapp</string>
+
     <string name="verdadero_btn_text">Verdad</string>
     <string name="falso_btn_text">Falso</string>
+    <string name="tip_boton_text">¡TIP!</string>
+
     <string name="siguiente_text">Siguiente</string>
 
-
+    <string name="warning_tip">¿Seguro que desea continual?</string>
+    <string name="ver_respuesta">Ver respuesta</string>
+    <string name="malo_text">Es malo hacer trampa.</string>
 
     <string name="pregunta_uno_text">México es un país del continente Americano.</string>
     <string name="pregunta_dos_text">El ITSUR se encuentra en Moroleón.</string>

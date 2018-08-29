@@ -1,5 +1,6 @@
 package com.example.taller.triviapp;
 
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     //https://github.com/ozwaldo/triviapp
+
+    private static final String KEY_INDEX = "indice";
 
     private Button mVerdaderoBoton;
     private Button mFalsoBoton;
@@ -57,7 +60,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (savedInstanceState != null) {
+            mIndiceActual = savedInstanceState.getInt(KEY_INDEX,0);
+        }
+
         crearPregunta();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(KEY_INDEX, mIndiceActual);
     }
 
     private void revisarRespuesta(boolean respUsuario) {
