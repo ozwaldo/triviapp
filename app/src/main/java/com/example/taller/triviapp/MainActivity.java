@@ -1,5 +1,6 @@
 package com.example.taller.triviapp;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mFalsoBoton;
     private Button mSiguienteBoton;
     private TextView mPregunta_text_view;
+    private Button mTipBoton;
 
     private Pregunta[] mPreguntas = new Pregunta[] {
             new Pregunta(R.string.pregunta_uno_text, true),
@@ -59,6 +61,21 @@ public class MainActivity extends AppCompatActivity {
                 crearPregunta();
             }
         });
+        mTipBoton = (Button) findViewById(R.id.tip_boton);
+        mTipBoton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(MainActivity.this, TipActivity.class);
+
+                boolean respuesta = mPreguntas[mIndiceActual].isRespuestaV();
+
+                Intent intent = TipActivity.nuevoIntent(MainActivity.this,
+                        respuesta);
+
+                startActivity(intent);
+            }
+        });
+
 
         if (savedInstanceState != null) {
             mIndiceActual = savedInstanceState.getInt(KEY_INDEX,0);
