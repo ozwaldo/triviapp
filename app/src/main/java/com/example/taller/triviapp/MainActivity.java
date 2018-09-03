@@ -1,5 +1,6 @@
 package com.example.taller.triviapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +15,15 @@ public class MainActivity extends AppCompatActivity {
     //https://github.com/ozwaldo/triviapp
 
     private static final String KEY_INDEX = "indice";
+    private static final int REQUEST_CODE_TIP = 0;
 
     private Button mVerdaderoBoton;
     private Button mFalsoBoton;
     private Button mSiguienteBoton;
     private TextView mPregunta_text_view;
     private Button mTipBoton;
+
+    private boolean mTipMostrado;
 
     private Pregunta[] mPreguntas = new Pregunta[] {
             new Pregunta(R.string.pregunta_uno_text, true),
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mIndiceActual = (mIndiceActual + 1) % mPreguntas.length;
+                mTipMostrado = false;
                 crearPregunta();
             }
         });
@@ -72,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = TipActivity.nuevoIntent(MainActivity.this,
                         respuesta);
 
-                startActivity(intent);
+                //startActivity(intent);
+
+                startActivityForResult(intent, REQUEST_CODE_TIP);
             }
         });
 
@@ -95,11 +102,14 @@ public class MainActivity extends AppCompatActivity {
 
         String menPreguntaId = null;
 
-        if (respUsuario == respTrue) {
-            menPreguntaId = "Respuesta Correcta";
-        } else {
-            menPreguntaId = "Respuesta Incorrecta";
-        }
+        if (mTipMostrado) {
+            menPreguntaId = getResources().getString(R.string.malo_text);
+        } else
+            if (respUsuario == respTrue) {
+                menPreguntaId = "Respuesta Correcta";
+            } else {
+                menPreguntaId = "Respuesta Incorrecta";
+            }
 
         Toast.makeText(this, menPreguntaId, Toast.LENGTH_SHORT).show();
 
@@ -110,5 +120,16 @@ public class MainActivity extends AppCompatActivity {
         mPregunta_text_view.setText(pregunta);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_CODE_TIP) {
+            if (data == null) {
+                return;
+            }
+            mTipMostrado = TipActivity.respMostrada(data);
+        }
+    }
 }
